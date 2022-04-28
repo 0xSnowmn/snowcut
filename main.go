@@ -4,15 +4,17 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
 func main() {
 	urls := getUrls()
+	cutFrom, _ := strconv.Atoi(os.Args[1])
 	for url := range urls {
 		reversed_string := Reverse(url)
 		cut_reversed_string := strings.Split(reversed_string, ".")
-		final := Reverse(strings.Join(cut_reversed_string[2:], "."))
+		final := Reverse(strings.Join(cut_reversed_string[:cutFrom], "."))
 		fmt.Println(final)
 	}
 }
